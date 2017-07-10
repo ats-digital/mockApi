@@ -3,9 +3,10 @@ var fs = require('fs');
 var app = express();
 var moment = require('moment');
 var _ = require('underscore');
+var faker = require('faker');
 
-var products = {
-    "products": [{
+var products =
+    [{
         "productName": "Handmade Plastic Car",
         "basePrice": "960.00",
         "category": "Baby",
@@ -4505,22 +4506,38 @@ var products = {
         "imageUrl": "http://lorempixel.com/640/480/technics?t=1482154441130",
         "delivery": "2017-08-19T19:58:17.568Z",
         "details": "Profound high-level open system with strategic reintermediate experiences"
-    }]
-}
+    }].map(function(product) {
+
+        product.reviews = [];
+
+        for (var j = 0; j <= 5; j++) {
+
+            product.reviews.push({
+                rating: faker.random.number(5),
+                content: faker.lorem.paragraph()
+            })
+        }
+
+
+        return product;
+
+    })
+
+
 
 app.get('/api/products', function(req, res) {
 
-    payload = products.products;
+    payload = products;
     res.json(payload);
 
 })
 
 app.get('/api/categories', function(req, res) {
 
-    var payload = _.chain(products.products).pluck('category').unique().value();
+    var payload = _.chain(products).pluck('category').unique().value();
     res.json(payload);
 
 })
 
 
-app.listen(3000)
+app.listen(3066)
