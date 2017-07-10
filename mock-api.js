@@ -4528,6 +4528,12 @@ var products =
 app.get('/api/products', function(req, res) {
 
     payload = products;
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+
     res.json(payload);
 
 })
@@ -4535,6 +4541,13 @@ app.get('/api/products', function(req, res) {
 app.get('/api/categories', function(req, res) {
 
     var payload = _.chain(products).pluck('category').unique().value();
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+
+    
     res.json(payload);
 
 })
