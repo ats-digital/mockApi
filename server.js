@@ -1,9 +1,13 @@
 var express = require('express')
+var cors = require('cors');
 var fs = require('fs');
 var app = express();
 var moment = require('moment');
 var _ = require('underscore');
 var faker = require('faker');
+
+app.use(cors();
+
 
 var products =
     [{
