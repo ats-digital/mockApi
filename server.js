@@ -6,7 +6,7 @@ var moment = require('moment');
 var _ = require('underscore');
 var faker = require('faker');
 
-app.use(cors();
+app.use(cors());
 
 
 var products =
